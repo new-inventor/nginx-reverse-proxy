@@ -12,10 +12,13 @@ init:
 	mkdir -p "$(DATA_PATH)/certbot/conf/renewal-hooks/pre"
 	mkdir -p "$(DATA_PATH)/certbot/logs"
 	mkdir -p "$(DATA_PATH)/certbot/www"
-	cp -r $(TEMPLATES_PATH)/nginx $(DATA_PATH)/nginx
-	sed -i "s/HOST/$(subst /,\/,$(HOST))/g" $(DATA_PATH)/nginx/conf/conf.nginx
-	cp -r $(TEMPLATES_PATH)/nginx-init $(DATA_PATH)/nginx-init
-	sed -i "s/HOST/$(subst /,\/,$(HOST))/g" $(DATA_PATH)/nginx-init/conf.nginx
+	mkdir -p "$(DATA_PATH)/nginx/conf"
+	mkdir -p "$(DATA_PATH)/nginx-init"
+	cp -f $(TEMPLATES_PATH)/nginx/conf/host.locations $(DATA_PATH)/nginx/conf/host.locations
+	cp -f $(TEMPLATES_PATH)/nginx/conf/conf.nginx $(DATA_PATH)/nginx/conf/default.conf
+	sed -i "s/HOST/$(subst /,\/,$(HOST))/g" $(DATA_PATH)/nginx/conf/default.conf
+	cp -r $(TEMPLATES_PATH)/nginx-init/conf.nginx $(DATA_PATH)/nginx-init/default.conf
+	sed -i "s/HOST/$(subst /,\/,$(HOST))/g" $(DATA_PATH)/nginx-init/default.conf
 	mkdir -p "$(DATA_PATH)/nginx/dh"
 	curl $(DH_PARAM_PATH) > $(DATA_PATH)/nginx/dh/dhparam
 

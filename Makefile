@@ -20,7 +20,7 @@ init:
 	curl $(DH_PARAM_PATH) > $(DATA_PATH)/nginx/dh/dhparam
 
 	docker compose -f ./docker-compose.init.yaml -p init up -d
-	docker docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d $(HOST)
+	docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d $(HOST)
 	docker compose -f ./docker-compose.init.yaml -p init down
 
 start:

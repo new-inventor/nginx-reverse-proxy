@@ -8,8 +8,9 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - "./data/nginx:/etc/nginx/conf.d:ro"
-      - "./data/certbot/conf:/etc/letsencrypt:ro"
+      - "./data/nginx/conf:/etc/nginx/conf.d:ro"
+      - "./data/nginx/dh:/etc/nginx/dh:ro"
+      - "./data/certbot/conf/:/etc/nginx/ssl/:ro"
       - "./data/certbot/www:/var/www/certbot:ro"
   certbot:
     image: certbot/certbot
@@ -17,3 +18,4 @@ services:
     volumes:
       - "./data/certbot/conf:/etc/letsencrypt:rw"
       - "./data/certbot/www:/var/www/certbot:rw"
+      - "./data/certbot/log:/var/log/letsencrypt:rw"

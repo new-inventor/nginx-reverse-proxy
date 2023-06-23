@@ -2,7 +2,7 @@ SHELL = /bin/sh
 -include ./.env
 export
 
-DATA_PATH := $(realpath ./data)
+DATA_PATH := $(realpath .)/data
 TEMPLATES_PATH := $(realpath ./tpl)
 
 init:

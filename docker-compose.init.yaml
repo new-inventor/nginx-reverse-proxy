@@ -17,6 +17,7 @@ services:
     volumes:
       - "./data/certbot/conf:/etc/letsencrypt:rw"
       - "./data/certbot/www:/var/www/certbot:rw"
+      - "./data/certbot/log:/var/log/letsencrypt:rw"
   openssl:
     image: alpine/openssl
     command: "openssl dhparam -out dhparam.pem 2048"

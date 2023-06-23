@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name example.org;
+    server_name 1272247-cs23628.tw1.ru;
     location / {
         return 301 https://$host$request_uri;
     }

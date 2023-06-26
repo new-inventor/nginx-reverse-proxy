@@ -10,6 +10,7 @@ server {
     }
 
     location / {
+        add_header Content-Type 'text/html';
         return 200 'OK';
     }
 }

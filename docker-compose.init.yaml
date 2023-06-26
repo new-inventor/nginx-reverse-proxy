@@ -6,5 +6,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - "./data/nginx-init:/etc/nginx/conf.d:ro"
+      - "./data/nginx-init:/etc/nginx/conf.d"
       - "./data/certbot/www:/var/www/certbot:ro"

@@ -3,8 +3,13 @@ services:
   nginx:
     image: nginx:1.24-alpine
     restart: always
+    networks:
+      - init
     ports:
       - "80:80"
     volumes:
       - "./data/nginx-init:/etc/nginx/conf.d"
       - "./data/certbot/www:/var/www/certbot:ro"
+
+networks:
+  init:

@@ -4,6 +4,8 @@ services:
     image: nginx:1.24-alpine
     restart: always
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+    networks:
+      - run
     ports:
       - "80:80"
       - "443:443"
@@ -19,3 +21,10 @@ services:
       - "./data/certbot/conf:/etc/letsencrypt:rw"
       - "./data/certbot/www:/var/www/certbot:rw"
       - "./data/certbot/log:/var/log/letsencrypt:rw"
+    networks:
+      - init
+      - run
+
+networks:
+  init:
+  run:

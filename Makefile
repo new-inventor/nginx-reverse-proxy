@@ -6,10 +6,8 @@ DATA_PATH := $(realpath .)/data
 TEMPLATES_PATH := $(realpath ./tpl)
 
 #--init: init reverse proxy with all actions needed;
-init: create-dirs process-templates get-dh-params
+init: create-dirs process-templates get-dh-params get-ca
 	docker compose -f ./docker-compose.init.yaml -p init --env-file ./.env up
-	#docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d $(HOST)
-	#docker compose -f ./docker-compose.init.yaml -p init down
 
 #--create-dirs: create needed directories;
 create-dirs:
@@ -34,6 +32,10 @@ process-templates:
 get-dh-params:
 	mkdir -p "$(DATA_PATH)/nginx/dh"
 	curl $(DH_PARAM_PATH) > $(DATA_PATH)/nginx/dh/dhparam
+
+#--get-ca: copy ca file from let's encrypt
+get-ca:
+	curl $(CA_PATH_PATH) > $(DATA_PATH)/nginx/dh/ca.pem
 
 #--start: start reverse proxy
 start:

@@ -10,6 +10,17 @@ services:
     volumes:
       - "./data/nginx-init:/etc/nginx/conf.d"
       - "./data/certbot/www:/var/www/certbot:ro"
+  certbot:
+    image: certbot/certbot
+    command: "certonly --webroot --webroot-path /var/www/certbot/ -d ${HOST}"
+    volumes:
+      - "./data/certbot/conf:/etc/letsencrypt:rw"
+      - "./data/certbot/www:/var/www/certbot:rw"
+      - "./data/certbot/log:/var/log/letsencrypt:rw"
+    networks:
+      - init
+    depends_on:
+      - nginx
 
 networks:
   init:

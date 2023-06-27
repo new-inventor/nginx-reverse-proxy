@@ -49,7 +49,7 @@ stop:
 
 #--update-nginx-conf: update nginx config without nginx restart
 update-nginx-conf:
-	docker compose exec nginx nginx -s reload
+	docker compose exec reverse-proxy-nginx-1 nginx -s reload
 
 .DEFAULT_GOAL := help
 help:

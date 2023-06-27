@@ -22,9 +22,7 @@ services:
       - "./data/certbot/www:/var/www/certbot:rw"
       - "./data/certbot/log:/var/log/letsencrypt:rw"
     networks:
-      - init
       - run
 
 networks:
-  init:
   run:

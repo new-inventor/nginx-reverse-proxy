@@ -24,10 +24,13 @@ init:
 
 	docker compose -f ./docker-compose.init.yaml -p init --env-file ./.env up
 	#docker compose run --rm  certbot certonly --webroot --webroot-path /var/www/certbot/ -d $(HOST)
-	docker compose -f ./docker-compose.init.yaml -p init down
+	#docker compose -f ./docker-compose.init.yaml -p init down
 
 start:
 	docker compose -p reverse-proxy up -d
 
 renew:
 	docker compose run --rm certbot renew
+
+stop:
+	docker compose -p reverse-proxy down

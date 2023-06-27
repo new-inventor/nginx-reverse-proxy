@@ -47,6 +47,10 @@ renew:
 stop:
 	docker compose -p reverse-proxy down
 
+#--update-nginx-conf: update nginx config without nginx restart
+update-nginx-conf:
+	docker compose exec nginx nginx -s reload
+
 .DEFAULT_GOAL := help
 help:
 	@grep -E '^#--.*$$' $(MAKEFILE_LIST) \

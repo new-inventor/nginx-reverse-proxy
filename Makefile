@@ -41,7 +41,7 @@ start:
 
 #--renew: renew certs
 renew:
-	docker compose run --rm certbot renew
+	docker compose -p reverse-proxy run --rm certbot renew
 
 #--stop: stop reverse proxy
 stop:
@@ -49,7 +49,7 @@ stop:
 
 #--update-nginx-conf: update nginx config without nginx restart
 update-nginx-conf:
-	docker compose exec reverse-proxy-nginx-1 nginx -s reload
+	docker compose -p reverse-proxy exec nginx nginx -s reload
 
 .DEFAULT_GOAL := help
 help:

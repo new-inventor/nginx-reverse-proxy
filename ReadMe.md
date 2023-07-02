@@ -13,7 +13,7 @@ Init command creates directories, configs for nginx and other needed files.
 6. run `make init`
 7. quite from interactive docker mode(press Ctrl + C) after certbot finish certification process
 8. change `./data/nginx/conf/host.locations` to your needs, for set up the nginx routing.
-9. run `make start`
+9. run `make start f='path/to/service/docker-compose.yaml'`
 
 ## ENV parameters
 HOST - Your domain

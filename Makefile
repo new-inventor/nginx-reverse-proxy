@@ -39,7 +39,10 @@ get-ca:
 
 #--start: start reverse proxy
 start:
-	docker compose -p reverse-proxy up -d
+ifndef f
+	$(error 'Compose file needed (f param)')
+endif
+	docker compose -f ./docker-compose.init.yaml -f $(f) -p reverse-proxy up -d
 
 #--renew: renew certs
 renew:
@@ -47,7 +50,10 @@ renew:
 
 #--stop: stop reverse proxy
 stop:
-	docker compose -p reverse-proxy down
+ifndef f
+	$(error 'Compose file needed (f param)')
+endif
+	docker compose -f ./docker-compose.init.yaml -f $(f) -p reverse-proxy down
 
 #--update-nginx-conf: update nginx config without nginx restart
 update-nginx-conf:

@@ -5,7 +5,8 @@ services:
     restart: always
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
     networks:
-      - run
+      - pub
+      - renew
     ports:
       - "80:80"
       - "443:443"
@@ -22,7 +23,10 @@ services:
       - "./data/certbot/www:/var/www/certbot:rw"
       - "./data/certbot/log:/var/log/letsencrypt:rw"
     networks:
-      - run
+      - renew
+    depends_on:
+      - nginx
 
 networks:
-  run:
+  pub:
+  renew:
